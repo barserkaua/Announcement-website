@@ -11,9 +11,9 @@ import {listFormCreateAnnouncement} from "../../actions/announcementActions";
 import {ANNOUNCEMENT_CREATE_ITEM_RESET} from "../../constants/announcementConstants";
 
 
-function CreateNewAnnouncement({history}){
+function CreateNewAnnouncement(){
 
-    // we get data from state
+    // get state of all announcement Items
     const announcement = useSelector(state => state.announcement)
     const {announcementItems, success} = announcement;
 
@@ -52,7 +52,7 @@ function CreateNewAnnouncement({history}){
            }, 4000);
            return () => clearTimeout(timer);
        }
-    }, [dispatch, history, success])
+    }, [dispatch, success])
 
     return(
         <div>

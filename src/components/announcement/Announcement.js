@@ -7,7 +7,7 @@ import {removeFromAnnouncement} from "../../actions/announcementActions";
 function Announcement({announcement}) {
 
     const dispatch = useDispatch();
-
+    // delete item from our list
     const deleteHandler = (id) => {
         let confirmResult = window.confirm("Are you sure want to delete this announcemented?")
         if (confirmResult) {

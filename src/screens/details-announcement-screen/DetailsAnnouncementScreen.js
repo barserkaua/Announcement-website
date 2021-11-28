@@ -1,6 +1,6 @@
-import {useState, useEffect} from "react";
+import {useEffect} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {Form, Button, Row, Col, ListGroup, Card} from "react-bootstrap";
+import {Button, Row, Col, ListGroup} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import Loader from "../../components/loader/Loader";
 import Message from "../../components/message/Message";
@@ -10,28 +10,29 @@ import {listAnnouncementDetails, removeFromAnnouncement} from "../../actions/ann
 import './details-announcement-screen.scss';
 
 function DetailsAnnouncementScreen() {
-
+    // we get current id announcement item
     const {id} = useParams();
-
+    // we get our history
     const navigate = useNavigate()
-
+    // get state of all announcement Items
     const announcement = useSelector(state => state.announcement)
     const {announcementItems} = announcement;
-
+    // get state of only current announcement Item
     const announcementDetails = useSelector(state => state.announcementDetails)
     const {announcementItem, loading, error} = announcementDetails;
 
     const dispatch = useDispatch();
 
     useEffect(() => {
+        // we search our current item
         announcementItems.map(item => {
             if (item.id === id) {
                 dispatch(listAnnouncementDetails(item))
-
             }
         })
     }, [dispatch, announcementItems])
 
+    // delete item from our list
     const deleteHandler = (id) => {
         let confirmResult = window.confirm("Are you sure want to delete this announcemented?")
         if (confirmResult) {
@@ -69,10 +70,12 @@ function DetailsAnnouncementScreen() {
                                     <ListGroup variant="flush">
 
                                         <ListGroup.Item>
-                                            <Button
-                                                className="btn-block btn_detail_edit"
-                                                type="button"
-                                            >Edit</Button>
+                                            <Link to={`/announcement-detail/${announcementItem.id}/edit`}>
+                                                <Button
+                                                    className="btn-block btn_detail_edit"
+                                                    type="button"
+                                                >Edit</Button>
+                                            </Link>
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
@@ -82,7 +85,6 @@ function DetailsAnnouncementScreen() {
                                                 onClick={() => deleteHandler(announcementItem.id)}
                                             >Delete</Button>
                                         </ListGroup.Item>
-
 
                                     </ListGroup>
                                 </div>

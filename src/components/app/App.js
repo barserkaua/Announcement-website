@@ -7,6 +7,7 @@ import Footer from "../footer/Footer";
 import HomeScreen from "../../screens/home-screen/HomeScreen";
 import CreateNewAnnouncement from "../../screens/create-new-announcement/CreateNewAnnouncement";
 import DetailsAnnouncementScreen from "../../screens/details-announcement-screen/DetailsAnnouncementScreen";
+import EditScreenAnnouncement from "../../screens/edit-screen-announcement/EditScreenAnnouncement";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                         <Route path="/" element={<HomeScreen/>} exact/>
                         <Route path="/create-new-announcement" element={<CreateNewAnnouncement/>}/>
                         <Route path="/announcement-detail/:id" element={<DetailsAnnouncementScreen/>}/>
+                        <Route path="/announcement-detail/:id/edit" element={<EditScreenAnnouncement/>}/>
                     </Routes>
                 </Container>
             </main>

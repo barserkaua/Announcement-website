@@ -16,8 +16,13 @@ import {
     ANNOUNCEMENT_DETAILS_REQUEST,
     ANNOUNCEMENT_DETAILS_SUCCESS,
     ANNOUNCEMENT_DETAILS_FAIL,
+
+    ANNOUNCEMENT_UPDATE_REQUEST,
+    ANNOUNCEMENT_UPDATE_SUCCESS,
+    ANNOUNCEMENT_UPDATE_FAIL,
+
+    ANNOUNCEMENT_UPDATE_ITEM,
 } from "../constants/announcementConstants";
-import {useSelector} from "react-redux";
 
 export const listAnnouncement = (announcement) => async (dispatch) => {
 
@@ -119,6 +124,36 @@ export const removeFromAnnouncement = (id) => async (dispatch, getState) => {
         payload: id
     })
 
-    // we save our cart history in localStorage
+    // we save our history in localStorage
     localStorage.setItem('announcementItems', JSON.stringify(getState().announcement.announcementItems))
+}
+
+export const updateFromAnnouncement = (data) => async (dispatch, getState) => {
+
+    dispatch({
+        type: ANNOUNCEMENT_UPDATE_ITEM,
+        payload: data
+    })
+
+    // we save our history in localStorage
+    localStorage.setItem('announcementItems', JSON.stringify(getState().announcement.announcementItems))
+}
+
+export const updateAnnouncement = () => async (dispatch, getState) => {
+    try {
+        dispatch({type: ANNOUNCEMENT_UPDATE_REQUEST})
+
+        dispatch({
+            type: ANNOUNCEMENT_UPDATE_SUCCESS,
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ANNOUNCEMENT_UPDATE_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        })
+    }
+
 }

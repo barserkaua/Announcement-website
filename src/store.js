@@ -7,6 +7,7 @@ import {
     announcementListReducer,
     announcementFormCreateReducer,
     announcementDetailsReducer,
+    announcementUpdateReducer,
 } from "./reducers/announcementReducer";
 
 const reducer = combineReducers({
@@ -14,6 +15,7 @@ const reducer = combineReducers({
     announcementList: announcementListReducer,
     announcementFormCreate: announcementFormCreateReducer,
     announcementDetails: announcementDetailsReducer,
+    announcementUpdate: announcementUpdateReducer,
 });
 
 const announcementItemFromStorage = localStorage.getItem('announcementItems') ?

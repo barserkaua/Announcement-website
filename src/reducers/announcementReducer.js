@@ -17,6 +17,13 @@ import {
     ANNOUNCEMENT_DETAILS_REQUEST,
     ANNOUNCEMENT_DETAILS_SUCCESS,
     ANNOUNCEMENT_DETAILS_FAIL,
+
+    ANNOUNCEMENT_UPDATE_REQUEST,
+    ANNOUNCEMENT_UPDATE_SUCCESS,
+    ANNOUNCEMENT_UPDATE_FAIL,
+    ANNOUNCEMENT_UPDATE_RESET,
+
+    ANNOUNCEMENT_UPDATE_ITEM,
 } from "../constants/announcementConstants";
 
 // this reducer show all announcement what we have
@@ -80,6 +87,19 @@ export const announcementReducer = (state={announcementItems:[]}, action) => {
         case ANNOUNCEMENT_DELETE_ITEM:
             return {...state, announcementItems: state.announcementItems.filter(x => x.id !== action.payload)}
 
+        case ANNOUNCEMENT_UPDATE_ITEM:
+            state.announcementItems.map((x, index) =>
+                {
+                    // we check if we have coincidence by id
+                    if (x.id === action.payload.id) {
+                        // we replace old item by new with help index on array
+                        state.announcementItems[index] = action.payload
+                    }
+                }
+            )
+
+            return {...state, announcementItems: state.announcementItems}
+
         case ANNOUNCEMENT_CREATE_ITEM_SUCCESS:
             return {...state, loading: false, success: true}
 
@@ -105,6 +125,25 @@ export const announcementFormCreateReducer = (state={}, action) => {
 
         case ANNOUNCEMENT_CREATE_FORM_FAIL:
             return {loading: false, error: action.payload}
+
+        default:
+            return state
+    }
+}
+
+export const announcementUpdateReducer = (state={}, action) => {
+    switch (action.type) {
+        case ANNOUNCEMENT_UPDATE_REQUEST:
+            return {loading:true}
+
+        case ANNOUNCEMENT_UPDATE_SUCCESS:
+            return {loading:false, success: true}
+
+        case ANNOUNCEMENT_UPDATE_FAIL:
+            return {loading:false, error: action.payload}
+
+        case ANNOUNCEMENT_UPDATE_RESET:
+            return {announcementItem: {}}
 
         default:
             return state
