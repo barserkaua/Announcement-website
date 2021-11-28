@@ -15,7 +15,7 @@ function CreateNewAnnouncement(){
 
     // get state of all announcement Items
     const announcement = useSelector(state => state.announcement)
-    const {announcementItems, success} = announcement;
+    const {success} = announcement;
 
     const announcementFormCreate = useSelector(state => state.announcementFormCreate)
     const {loading, error} = announcementFormCreate;

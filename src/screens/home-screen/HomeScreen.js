@@ -4,8 +4,12 @@ import Loader from "../../components/loader/Loader";
 import Message from "../../components/message/Message";
 import {useEffect} from "react";
 import {listAnnouncement} from "../../actions/announcementActions";
+import {useLocation, useNavigate} from "react-router-dom";
 
 function HomeScreen() {
+
+    // we get our url
+    const location = useLocation();
 
     const dispatch = useDispatch();
 
@@ -15,9 +19,11 @@ function HomeScreen() {
     const announcementList = useSelector(state => state.announcementList)
     const {loading, error, announcementListItems} = announcementList;
 
+    let keyword = location.search.split('?keyword=')[1]
+
     useEffect(() => {
         dispatch(listAnnouncement(announcementItems))
-    }, [dispatch, announcementItems])
+    }, [dispatch, announcementItems, keyword])
 
     return (
         <div>
@@ -28,7 +34,7 @@ function HomeScreen() {
                     <div className="cards">
                         {announcementListItems.map(announcement => (
                             <div key={announcement.id}>
-                                <Announcement announcement={announcement}/>
+                                <Announcement announcement={announcement} keyword={keyword}/>
                             </div>
                         ))}
                     </div>

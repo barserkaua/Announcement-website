@@ -1,5 +1,6 @@
 import { Button, Container, Form, FormControl, Nav, Navbar } from "react-bootstrap";
 import {NavLink} from "react-router-dom";
+import SearchBox from "../search-box/SearchBox";
 
 function Header() {
     return (
@@ -21,15 +22,7 @@ function Header() {
                             Top Announcement
                         </NavLink>
                     </Nav>
-                    <Form className="d-flex">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
+                    <SearchBox/>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

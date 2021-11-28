@@ -4,7 +4,7 @@ import './announcement.scss';
 import {useDispatch} from "react-redux";
 import {removeFromAnnouncement} from "../../actions/announcementActions";
 
-function Announcement({announcement}) {
+function Announcement({announcement, keyword}) {
 
     const dispatch = useDispatch();
     // delete item from our list
@@ -15,7 +15,8 @@ function Announcement({announcement}) {
         }
     }
 
-    return (
+    if (announcement.title.toLowerCase().search(keyword) >= 0 || keyword == undefined) {
+        return (
             <Card className="card-background">
                 <Card.Text className="card__icon"><i className="fas fa-bolt"></i></Card.Text>
 
@@ -30,7 +31,13 @@ function Announcement({announcement}) {
                     <p lassName="card__date">{announcement.date}</p>
                 </Card.Text>
             </Card>
-    )
+        )
+    } else {
+        return (
+            <div></div>
+        )
+    }
+
 }
 
 export default Announcement;
