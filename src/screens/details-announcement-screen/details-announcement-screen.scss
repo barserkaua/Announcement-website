@@ -1,0 +1,15 @@
+.btn_detail {
+  &_edit, &_delete {
+    width: 100%;
+    font-size: 18px;
+  }
+}
+
+.details {
+  &_date {
+    text-align: end;
+  }
+  &_title {
+    text-align: center;
+  }
+}
