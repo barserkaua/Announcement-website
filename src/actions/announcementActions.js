@@ -22,6 +22,10 @@ import {
     ANNOUNCEMENT_UPDATE_FAIL,
 
     ANNOUNCEMENT_UPDATE_ITEM,
+
+    ANNOUNCEMENT_TOP_REQUEST,
+    ANNOUNCEMENT_TOP_SUCCESS,
+    ANNOUNCEMENT_TOP_FAIL,
 } from "../constants/announcementConstants";
 
 export const listAnnouncement = (announcement) => async (dispatch) => {
@@ -155,5 +159,26 @@ export const updateAnnouncement = () => async (dispatch, getState) => {
                 : error.message,
         })
     }
+}
 
+
+export const topListAnnouncement = (announcement) => async (dispatch) => {
+
+    try {
+        dispatch({type: ANNOUNCEMENT_TOP_REQUEST})
+
+        dispatch({
+            type: ANNOUNCEMENT_TOP_SUCCESS,
+            payload: announcement
+        })
+
+
+    } catch (error){
+        dispatch({
+            type: ANNOUNCEMENT_TOP_FAIL,
+            payload: error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message,
+        })
+    }
 }

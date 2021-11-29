@@ -18,9 +18,6 @@ function Header() {
                             Add new Announcement
                         </NavLink>
 
-                        <NavLink to='/top-announcement' className='link-underline-off mx-3 my-3'>
-                            Top Announcement
-                        </NavLink>
                     </Nav>
                     <SearchBox/>
                 </Navbar.Collapse>

@@ -24,6 +24,11 @@ import {
     ANNOUNCEMENT_UPDATE_RESET,
 
     ANNOUNCEMENT_UPDATE_ITEM,
+
+    ANNOUNCEMENT_TOP_REQUEST,
+    ANNOUNCEMENT_TOP_SUCCESS,
+    ANNOUNCEMENT_TOP_FAIL,
+    ANNOUNCEMENT_TOP_RESET,
 } from "../constants/announcementConstants";
 
 // this reducer show all announcement what we have
@@ -144,6 +149,27 @@ export const announcementUpdateReducer = (state={}, action) => {
 
         case ANNOUNCEMENT_UPDATE_RESET:
             return {announcementItem: {}}
+
+        default:
+            return state
+    }
+}
+
+// this reducer show all announcement what we have
+export const announcementTopListReducer = (state={announcementTopListItems:[]}, action) => {
+    switch (action.type) {
+
+        case ANNOUNCEMENT_TOP_REQUEST:
+            return {loading:true, announcementTopListItems:[]}
+
+        case ANNOUNCEMENT_TOP_SUCCESS:
+            return {
+                loading:false,
+                announcementTopListItems:action.payload,
+            }
+
+        case ANNOUNCEMENT_TOP_FAIL:
+            return {loading:false, error:action.payload}
 
         default:
             return state

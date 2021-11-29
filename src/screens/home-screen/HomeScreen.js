@@ -4,7 +4,7 @@ import Loader from "../../components/loader/Loader";
 import Message from "../../components/message/Message";
 import {useEffect} from "react";
 import {listAnnouncement} from "../../actions/announcementActions";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 function HomeScreen() {
 

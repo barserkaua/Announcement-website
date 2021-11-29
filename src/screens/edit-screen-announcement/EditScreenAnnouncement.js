@@ -66,7 +66,7 @@ function EditScreenAnnouncement() {
     return (
         <div>
 
-            <Link to='/' className="btn btn-outline-dark my-3"><i className="fas fa-arrow-left"></i> Go Back</Link>
+            <Link to={`/announcement-detail/${id}`} className="btn btn-outline-dark my-3"><i className="fas fa-arrow-left"></i> Go Back</Link>
             {loading ? <Loader/>
                 :error ? <Message variant="danger">{error}</Message>
                     :
